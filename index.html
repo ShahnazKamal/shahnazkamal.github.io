@@ -139,11 +139,7 @@ ul{padding: 0px;}
 		width: 50% !important;
 		height: auto;
 }
-.mobileGrid{
-	display: block;
-	width: 100%;	
-	background-color: #FFFFFF;
-}
+
 #numbersMobile li{
 	display: inline-block;	
 	background-color: #EFEFEF;
@@ -291,8 +287,6 @@ $(function(){
 		</div>
 
 		<div id="numbersMobile" style="background-color: #ffffff;">
-		
-
 						<ul>
 							<li style="border-left: 5px solid #6F98A8">1</li>
 							<li style="border-left: 5px solid #2B8EAD">2</li>
@@ -304,7 +298,6 @@ $(function(){
 							<li style="border-left: 5px solid #6F98A8">8</li>
 							<li style="border-left: 5px solid #2F454E">9</li>
 						</ul>
-
 		</div>
 
 	</div>
@@ -315,48 +308,3 @@ $(function(){
 </div>
 </body>
 </html>
-
-<!--
-
-	 $.fn.shuffle = function() {
-        return this.each(function(){
-            var items = $(this).children().clone(true);            
-            return (items.length) ? $(this).html($.shuffle(items)) : this;
-        });
-    }
-
-		/*$("#numbersDesktop div").each(function(){
-		       myNumbers.push($(this).text());
-		       myBgcolors.push($(this).css('background-color'));
-		    });*/
-
-		    /*for (var i = myNumbers.length - 1; i > 0; i--) {
-		        var j = parseInt(Math.random() * (i+1));
-		        var temp = myNumbers[i];
-		        var tempColor = myBgcolors[i];
-		        myNumbers[i] = myNumbers[j];
-		        myNumbers[j] = temp;
-
-		        myBgcolors[i] = myBgcolors[j];
-		        myBgcolors[j] = tempColor;
-		        
-    		}
-
-    		for (var k = 0; k < myNumbers.length; k++) {
-    			divid = "#desk" + (k + 1);
-    			$(divid).html(myNumbers[k]);
-    			$(divid).css("background-color",myBgcolors[k]);
-			}
-
-
-			for (var i = 0; i < myObject.length; i++) {
-			    myNumbers.push(myObject[i].innerHTML);
-			    myBgcolors.push(myObject[i].css('background-color'));
-			    alert();
-			}*/
-
-  		 	//$('ul').shuffle();  	       
-  			//$('#numbersDesktop').shuffle();
-
-
- -->
