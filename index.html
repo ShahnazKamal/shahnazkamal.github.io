@@ -1,0 +1,362 @@
+<!doctype html>
+<html>
+<head>
+<style>
+.heading{
+		width: 960px;
+		color: #333333;
+		font-family: Calibri, Arial, helvetica, sans-serif;
+		font-size: 20px;
+		margin: 20px 0px 10px 0px;
+		font-weight: 600;
+}
+.footer{
+		width: 960px;
+		color: #333333;
+		font-family: Arial, helvetica, sans-serif;
+		font-size: 12px;
+		margin: 20px 0px 50px 0px;
+		font-style: italic;
+}
+#numbersDesktop div{
+		display: inline-block;
+		width:33.3% !important; 
+		height:auto !important;
+		font-weight: normal;
+		color:#ffffff;
+		vertical-align: middle;
+		display: inline-block;
+		font-size:72px;
+		line-height: 3.2em;
+		font-family: Arial, helvetica, sans-serif;
+		text-align: center;
+		 margin:0px !important;outline:none;
+}
+.button{ 
+		display: inline-block;
+		width: 175px;
+		height:45px;
+		border-radius: 5px;
+		background-color: #72C3DC;
+		color:#ffffff;
+		border:none;   
+		box-shadow: 0px 4px 0px #2B8EAD;
+		vertical-align: middle !important;
+  		text-align: center;
+		font-family: Arial, helvetica, sans-serif;
+		font-size: 13px;
+		margin-top: 20px;
+		cursor: pointer;
+}
+.actions{
+		display: inline-block !important;
+		width:25% !important;
+		margin-top: 10px;
+}
+#main{
+		width: 960px;
+		box-shadow: 0px -4px 0px #BFBFBF;
+		display: block;
+		overflow: auto;
+}
+#numbersDesktop{
+		display: inline-block !important;
+		float:left;
+		width:75% !important;
+		height: auto !important;
+		margin:0px !important;outline:none;
+}
+#numbersMobile{
+		display: none !important;
+}
+.mobileResp{
+		display: block;
+}
+
+
+@media only screen and (max-width: 480px) {
+body{
+	background-color: #ffffff !important;
+}
+li{
+	list-style: none;
+	display: block;
+}
+ul{padding: 0px;}
+.heading{
+		display: inline-block;
+		height: 40px;
+		width: 100%;
+		color: #BFBFBF;
+		background-color: #333333;
+		font-family: Calibri, Arial, helvetica, sans-serif;
+		font-size: 18px;
+		line-height: 2em;
+		margin: 0px;
+		font-weight: normal;
+		vertical-align: middle;
+}
+
+.footer{
+		width: 100%;
+		color: #333333;
+		font-family: Arial, helvetica, sans-serif;
+		font-size: 8px;
+		margin: 15px 0px 30px 0px;
+		font-style: italic;
+}
+
+#numbersDesktop{
+		display: none !important;
+}
+#numbersMobile{
+		margin-top: 10px;
+		display: block !important;
+		width: 93% !important;
+}
+#main{
+		width: 100%;
+		box-shadow: 0px 0px 0px #BFBFBF;
+		display: block;
+		overflow: auto;
+}
+
+.actions{
+		display: inline-block !important;
+		width:100% !important;
+		margin-top: 0px;
+}
+.button{ 		
+		width: 75px;
+		height:30px;
+		box-shadow: 0px 3px 0px #2B8EAD;
+		font-size: 10px;
+		margin-top: 10px;
+}
+
+.mobileResp{
+		display: inline-block;
+		width: 50% !important;
+		height: auto;
+}
+.mobileGrid{
+	display: block;
+	width: 100%;	
+	background-color: #FFFFFF;
+}
+#numbersMobile li{
+	display: inline-block;	
+	background-color: #EFEFEF;
+	font-size:12px;
+	line-height:1.75em;
+	font-weight: bold;
+	font-family: Arial, helvetica, sans-serif;
+	text-align: center;
+	width: 100%;
+	padding-top: 5px;
+	margin-top: 5px;
+	height: 25px;
+}
+.leftbutton{
+	text-align: right !important;
+}
+.rightbutton{
+	text-align: left !important;
+}
+#shuffle{ 
+	margin-right: 5px; 
+}
+#sort{ 
+	margin-left: 5px; 
+}
+
+}
+
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	 var items,items1,flagSort=0,flagShuffle=0;
+
+	  	   items = $("#numbersDesktop").children().clone(true); 
+	       items1 = $("#numbersMobile ul").children().clone(true);
+
+  		$("#shuffle").click(function () {	
+           $("#numbersDesktop").html($.shuffle(items,items1));
+           flagSort=0;
+           flagShuffle=1;
+	    });
+
+	    $("#sort").click(function () {
+
+	    	if(flagSort==0 && flagShuffle==1)
+	    	{
+		    	$("#numbersDesktop div").each(function(){
+			    	items = $("#numbersDesktop").children().clone(true); 
+			        items1 = $("#numbersMobile ul").children().clone(true);	
+			    	$("#numbersDesktop").html($.sort(items,items1));
+			    	flagSort = 1;
+		    	});
+	    	}
+	    	else
+	    		alert("Uh oh! The numbers are already sorted!");
+	    });
+
+});
+
+$(function(){
+
+    $.shuffle = function(arr,arr1) {
+
+		for (var i = arr.length; i > 0; i--) {
+	        var j = parseInt(Math.random() * i);
+	        var temp = arr[--i];
+	        arr[i] = arr[j];
+	        arr[j] = temp;
+
+	        var temp1 = arr1[i];
+	        arr1[i] = arr1[j];
+	        arr1[j] = temp1;	   
+    	}
+
+    	$("#numbersMobile ul").html(arr1);
+        return arr;
+    }
+
+    $.sort = function(arr,arr1) {
+
+    	var i,j,sorti,sortj,deskTemp,mblTemp,sorti1,sortj1;
+
+    	for (i = 0; i < arr.length; i++) {
+    		sorti = parseInt(arr[i].textContent);
+    		sorti1 = parseInt(arr1[i].textContent);
+    		for(j = i+1; j < arr.length;j++)
+    		{
+    			sortj = parseInt(arr[j].textContent);
+    			sortj1 = parseInt(arr1[j].textContent);
+    			if (sorti > sortj)
+		        {
+			        deskTemp = arr[i];
+			        arr[i] = arr[j];
+			        arr[j] = deskTemp; 
+		    	}
+
+		    	if (sorti1 > sortj1)
+		        {
+			        mblTemp = arr1[i];
+			        arr1[i] = arr1[j];
+			        arr1[j] = mblTemp; 
+		    	}		    	
+		    			    	
+	    	}
+    	}
+
+    	$("#numbersMobile ul").html(arr1);
+        return arr;
+    }
+    
+});
+
+</script>
+
+
+</head>
+<body width="100%" style="background-color: #EFEFEF">
+<div id="wrapper" align="center">
+
+	<div class="heading">
+				Shuffle and Sort
+	</div>
+
+	<div id="main" align="center">
+
+		
+		<div id="numbersDesktop" align="left">
+
+			<div class="numbersD" id="desk1" style="background-color: #6F98A8">1</div><div class="numbersD" id="desk2" style="background-color: #2B8EAD">2</div><div class="numbersD" id="desk3" style="background-color: #2F454E">3</div><div class="numbersD" id="desk4" style="background-color: #2B8EAD">4</div><div class="numbersD" id="desk5" style="background-color: #2F454E">5</div><div class="numbersD" id="desk6" style="background-color: #BFBFBF">6</div><div class="numbersD" id="desk7" style="background-color: #BFBFBF">7</div><div class="numbersD" id="desk8" style="background-color: #6F98A8">8</div><div class="numbersD" id="desk9" style="background-color: #2F454E">9</div>
+
+		</div>
+		<div class="actions">
+			<table align="center" width="100%" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td align="center" class="mobileResp leftbutton">
+						<input type="button" class="button" name="shuffle" id="shuffle" value="SHUFFLE"/> 
+					</td>
+					<td align="center" class="mobileResp rightbutton">
+						<input type="button" class="button" name="sort" id="sort" value="SORT"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="numbersMobile" style="background-color: #ffffff;">
+		
+
+						<ul>
+							<li style="border-left: 5px solid #6F98A8">1</li>
+							<li style="border-left: 5px solid #2B8EAD">2</li>
+							<li style="border-left: 5px solid #2F454E">3</li>
+							<li style="border-left: 5px solid #2B8EAD">4</li>
+							<li style="border-left: 5px solid #2F454E">5</li>
+							<li style="border-left: 5px solid #BFBFBF">6</li>
+							<li style="border-left: 5px solid #BFBFBF">7</li>
+							<li style="border-left: 5px solid #6F98A8">8</li>
+							<li style="border-left: 5px solid #2F454E">9</li>
+						</ul>
+
+		</div>
+
+	</div>
+
+	<div class="footer">
+				Shuffle and Sort by Shahnaz Kamal
+	</div>	
+</div>
+</body>
+</html>
+
+<!--
+
+	 $.fn.shuffle = function() {
+        return this.each(function(){
+            var items = $(this).children().clone(true);            
+            return (items.length) ? $(this).html($.shuffle(items)) : this;
+        });
+    }
+
+		/*$("#numbersDesktop div").each(function(){
+		       myNumbers.push($(this).text());
+		       myBgcolors.push($(this).css('background-color'));
+		    });*/
+
+		    /*for (var i = myNumbers.length - 1; i > 0; i--) {
+		        var j = parseInt(Math.random() * (i+1));
+		        var temp = myNumbers[i];
+		        var tempColor = myBgcolors[i];
+		        myNumbers[i] = myNumbers[j];
+		        myNumbers[j] = temp;
+
+		        myBgcolors[i] = myBgcolors[j];
+		        myBgcolors[j] = tempColor;
+		        
+    		}
+
+    		for (var k = 0; k < myNumbers.length; k++) {
+    			divid = "#desk" + (k + 1);
+    			$(divid).html(myNumbers[k]);
+    			$(divid).css("background-color",myBgcolors[k]);
+			}
+
+
+			for (var i = 0; i < myObject.length; i++) {
+			    myNumbers.push(myObject[i].innerHTML);
+			    myBgcolors.push(myObject[i].css('background-color'));
+			    alert();
+			}*/
+
+  		 	//$('ul').shuffle();  	       
+  			//$('#numbersDesktop').shuffle();
+
+
+ -->
