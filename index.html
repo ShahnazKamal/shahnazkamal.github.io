@@ -173,7 +173,7 @@ ul{padding: 0px;}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-	 var items,items1,flagSort=0,flagShuffle=0;
+	 var items,items1,flagSort=0;
 
 	  	   items = $("#numbersDesktop").children().clone(true); 
 	       items1 = $("#numbersMobile ul").children().clone(true);
@@ -181,12 +181,11 @@ $(document).ready(function(){
   		$("#shuffle").click(function () {	
            $("#numbersDesktop").html($.shuffle(items,items1));
            flagSort=0;
-           flagShuffle=1;
 	    });
 
 	    $("#sort").click(function () {
 
-	    	if(flagSort==0 && flagShuffle==1)
+	    	if(flagSort==0)
 	    	{
 		    	$("#numbersDesktop div").each(function(){
 			    	items = $("#numbersDesktop").children().clone(true); 
